@@ -1,0 +1,59 @@
+<div class="container shadow p-3 rounded mt-5">
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmitItemForm()" class="px-5">
+    <div class="form-group mb-3">
+      <label for="itemInput">Enter your items</label>
+      <input
+        type="text"
+        id="itemInput"
+        formControlName="item"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="numberInput">How many ?</label>
+      <input
+        type="number"
+        id="numberInput"
+        formControlName="number"
+        class="form-control"
+      />
+    </div>
+
+    <div class="d-flex">
+      <button
+        class="btn btn-success mx-auto"
+        type="submit"
+        [disabled]="itemForm.invalid"
+      >
+        Register
+      </button>
+      <button
+        class="btn btn-danger mx-auto"
+        type="button"
+        (click)="onClearItemForm()"
+      >
+        Reset
+      </button>
+    </div>
+  </form>
+
+  <hr class="w-100">
+
+  <div class="bg-light rounded w-50 mt-3 mx-auto">
+    <ul class="list-group">
+      <li *ngFor="let item of items, let i = index" class="list-group-item d-flex">
+        <input
+          class="form-check-input me-1 mt-2"
+          type="checkbox"
+          value=""
+          aria-label="..."
+        />
+        <span class="align-self-center align-middle ms-3">{{ item.item | firstCharUpperCase }} x{{ item.number }}</span>
+        <button class="btn btn-danger btn-sm align-self-center ms-auto px-2" (click)="delete(i)" type="button">
+          Ⅹ
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
