@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Item } from '../interfaces/item';
+import { ListServiceService } from '../services/list-service.service';
 
 @Component({
   selector: 'app-list',
@@ -11,10 +12,11 @@ export class ListComponent implements OnInit {
 
   itemForm!: FormGroup;
 
-  items: Item[] = []
+  itemsList: Item[] = []
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private listService: ListServiceService
   ) { }
 
   ngOnInit(): void {
@@ -31,8 +33,9 @@ export class ListComponent implements OnInit {
   onSubmitItemForm(): void {
       console.log(this.itemForm.value);
       let item = this.itemForm.value
-      this.items.push(item);
-      console.log(this.items);
+      this.listService.addItem(item);
+      this.itemsList = this.listService.getItems();
+      console.log(this.listService.items);
       this.itemForm.setValue({
         item: '',
         number: 1
@@ -41,12 +44,14 @@ export class ListComponent implements OnInit {
 
   //clear items
   onClearItemForm(): void {
-    this.items = [];
+    this.listService.items = [];
+    this.itemsList = this.listService.getItems();
   }
 
   //delete item
   delete(id: number): void {
-    this.items.splice(id, 1);
+    this.listService.deleteItem(id);
+    this.itemsList = this.listService.getItems();
   }
 
 }
