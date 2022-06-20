@@ -15,10 +15,18 @@ export class ListServiceService {
   }
 
   addItem(item: Item): void {
-    this.items.push(item);
+    try {
+      this.items.push(item);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   deleteItem(id: number): void {
-    this.items.splice(id, 1);
+    try {
+      this.items.splice(id, 1);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

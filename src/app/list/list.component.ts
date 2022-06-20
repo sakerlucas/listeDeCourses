@@ -35,7 +35,7 @@ export class ListComponent implements OnInit {
       let item = this.itemForm.value
       this.listService.addItem(item);
       this.itemsList = this.listService.getItems();
-      console.log(this.listService.items);
+      //console.log(this.listService.items);
       this.itemForm.setValue({
         item: '',
         number: 1
