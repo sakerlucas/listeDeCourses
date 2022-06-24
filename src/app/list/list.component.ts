@@ -45,7 +45,6 @@ export class ListComponent implements OnInit {
     this.itemsList = this.listService.getItems();
   }
 
-  //delete item
   delete(id: number): void {
     this.listService.deleteItem(id);
     this.itemsList = this.listService.getItems();
