@@ -31,18 +31,15 @@ export class ListComponent implements OnInit {
   }
 
   onSubmitItemForm(): void {
-      console.log(this.itemForm.value);
       let item = this.itemForm.value
       this.listService.addItem(item);
       this.itemsList = this.listService.getItems();
-      //console.log(this.listService.items);
       this.itemForm.setValue({
         item: '',
         number: 1
       });
   }
 
-  //clear items
   onClearItemForm(): void {
     this.listService.items = [];
     this.itemsList = this.listService.getItems();
